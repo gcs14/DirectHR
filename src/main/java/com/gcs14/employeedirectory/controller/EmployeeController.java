@@ -1,7 +1,7 @@
-package com.gxcsmith94.employeedirectory.controller;
+package com.gcs14.employeedirectory.controller;
 
-import com.gxcsmith94.employeedirectory.model.Employee;
-import com.gxcsmith94.employeedirectory.repository.EmployeeRepository;
+import com.gcs14.employeedirectory.model.Employee;
+import com.gcs14.employeedirectory.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

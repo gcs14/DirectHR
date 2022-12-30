@@ -1,4 +1,4 @@
-package com.gxcsmith94.employeedirectory.model;
+package com.gcs14.employeedirectory.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

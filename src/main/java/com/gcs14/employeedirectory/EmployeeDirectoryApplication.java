@@ -1,4 +1,4 @@
-package com.gxcsmith94.employeedirectory;
+package com.gcs14.employeedirectory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
