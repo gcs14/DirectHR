@@ -1,7 +1,7 @@
 package com.gcs14.employeedirectory.exception;
 
-public class UserNotFoundException extends RuntimeException{
-    public UserNotFoundException(Long id){
+public class EmployeeNotFoundException extends RuntimeException{
+    public EmployeeNotFoundException(Long id){
         super("Could not find the user with id " + id);
     }
 }
