@@ -106,7 +106,7 @@ public class Employee {
         return hireDate;
     }
 
-    public void setHiredate(LocalDate hiredate) {
-        this.hireDate = hiredate;
+    public void setHireDate(LocalDate hireDate) {
+        this.hireDate = hireDate;
     }
 }
