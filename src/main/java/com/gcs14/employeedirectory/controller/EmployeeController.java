@@ -1,8 +1,7 @@
 package com.gcs14.employeedirectory.controller;
 
-import com.gcs14.employeedirectory.exception.UserNotFoundException;
 import com.gcs14.employeedirectory.model.Employee;
-import com.gcs14.employeedirectory.repository.EmployeeRepository;
+import com.gcs14.employeedirectory.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -11,22 +10,31 @@ import java.util.List;
 @CrossOrigin("http://localhost:3000")
 public class EmployeeController {
 
-    @Autowired
-    private EmployeeRepository employeeRepository;
+    private final EmployeeService employeeService;
 
-    @PostMapping("/employee")
-    Employee newEmployee(@RequestBody Employee newEmployee){
-        return employeeRepository.save(newEmployee);
+    @Autowired
+    public EmployeeController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @GetMapping("/employees")
-    List<Employee> getAllEmployees(){
-        return employeeRepository.findAll();
+    public List<Employee> getEmployees() {
+        return employeeService.getEmployees();
     }
 
     @GetMapping("/employee/{id}")
-    Employee getEmployeeById(@PathVariable Long id){
-        return employeeRepository.findById(id)
-                .orElseThrow(()->new UserNotFoundException(id));
+    public Employee getEmployeeById(@PathVariable Long id){
+        return employeeService.getEmployeeById(id);
+    }
+
+    @PostMapping("/employee")
+    public void addNewEmployee(@RequestBody Employee employee) {
+        employeeService.addNewEmployee(employee);
+    }
+
+    @PatchMapping ("/employee/{id}")
+    public void updateEmploye(@RequestBody Employee newEmployee, @PathVariable Long id){
+        employeeService.updateEmployee(newEmployee, id);
+
     }
 }
