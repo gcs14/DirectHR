@@ -16,25 +16,42 @@ public class EmployeeController {
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-
     @GetMapping("/employees")
     public List<Employee> getEmployees() {
         return employeeService.getEmployees();
     }
-
-    @GetMapping("/employee/{id}")
     public Employee getEmployeeById(@PathVariable Long id){
         return employeeService.getEmployeeById(id);
     }
-
     @PostMapping("/employee")
     public void addNewEmployee(@RequestBody Employee employee) {
         employeeService.addNewEmployee(employee);
     }
-
-    @PatchMapping ("/employee/{id}")
-    public void updateEmploye(@RequestBody Employee newEmployee, @PathVariable Long id){
-        employeeService.updateEmployee(newEmployee, id);
-
+    @PutMapping("/employee/{id}")
+    public void updateEmployee(@RequestBody Employee employee, @PathVariable Long id){
+        employeeService.updateEmployee(employee, id);
     }
+
+    // Code for if DTO implementation were needed
+    /*
+    @GetMapping("/employees")
+    public List<EmployeeDTO> getAllEmployees() {
+        return employeeService.getAllEmployees();
+    }
+
+    @GetMapping("/employee/{id}")
+    public EmployeeDTO getEmployeeById(@PathVariable Long id){
+        return employeeService.getEmployeeById(id);
+    }
+
+    @PostMapping("/employee")
+    public EmployeeDTO addNewEmployee(@RequestBody EmployeeDTO dto) {
+        return employeeService.addNewEmployee(dto);
+    }
+
+    @PutMapping("/employee/{id}")
+    public void updateEmployee(@RequestBody EmployeeDTO updatedDto, @PathVariable Long id){
+        employeeService.updateEmployee(updatedDto, id);
+    }
+     */
 }
