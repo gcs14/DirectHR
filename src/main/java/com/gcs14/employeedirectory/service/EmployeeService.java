@@ -1,7 +1,6 @@
 package com.gcs14.employeedirectory.service;
 
 import com.gcs14.employeedirectory.converter.EmployeeConverter;
-import com.gcs14.employeedirectory.exception.EmployeeNotFoundException;
 import com.gcs14.employeedirectory.model.Employee;
 import com.gcs14.employeedirectory.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +25,7 @@ public class EmployeeService {
     }
 
     public Employee getEmployeeById(Long id){
-        return employeeRepository.findById(id)
-                .orElseThrow(()->new EmployeeNotFoundException(id));
+        return employeeRepository.findById(id).get();
     }
 
     public void addNewEmployee(Employee employee) {
@@ -35,25 +33,24 @@ public class EmployeeService {
     }
 
     public Employee updateEmployee(Employee newEmployee, Long id){
-        Employee existingEmployee = employeeRepository.findById(id)
-                .orElseThrow(()->new EmployeeNotFoundException(id));
+        Employee existingEmployee = employeeRepository.findById(id).get();
 
-        if(newEmployee.getName()!= null){
+        if(newEmployee.getName()!= null && !newEmployee.getName().equals("")){
             existingEmployee.setName(newEmployee.getName());
         }
-        if(newEmployee.getUsername()!= null){
+        if(newEmployee.getUsername()!= null && !newEmployee.getUsername().equals("")){
             existingEmployee.setUsername(newEmployee.getUsername());
         }
-        if(newEmployee.getEmail()!= null){
+        if(newEmployee.getEmail()!= null && !newEmployee.getEmail().equals("")){
             existingEmployee.setEmail(newEmployee.getEmail());
         }
-        if(newEmployee.getPhoneNumber() != null){
+        if(newEmployee.getPhoneNumber() != null && !newEmployee.getPhoneNumber().equals("")){
             existingEmployee.setPhoneNumber(newEmployee.getPhoneNumber());
         }
-        if(newEmployee.getPosition() != null){
+        if(newEmployee.getPosition() != null && !newEmployee.getPosition().equals("")){
             existingEmployee.setPosition(newEmployee.getPosition());
         }
-        if(newEmployee.getJobType() != null){
+        if(newEmployee.getJobType() != null && !newEmployee.getJobType().equals("")){
             existingEmployee.setJobType(newEmployee.getJobType());
         }
         if(newEmployee.getSalary() != 0){
