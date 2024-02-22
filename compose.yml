@@ -1,0 +1,26 @@
+version: '1'
+
+volumes:
+  employee-directory:
+
+services:
+  employee-directory:
+    image: mysql:8.0.31
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456789
+      - MYSQL_DATABASE=employees
+    volumes:
+      - employee-directory:/var/lib/mysql
+
+  app:
+    image: employee-directory
+    ports:
+      -8080:8080
+    environment:
+      - SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/employees
+      - SPRING.JPA.PROPERTIES.HIBERNATE.DIALECT: org.hibernate.dialect.MySQL8Dialect
+      - spring.datasource.username: root
+      - spring.datasource.password: 123456789
+      - spring.jpa.hibernate.ddl-auto: update
+      - spring.datasource.driver-class-name: com.mysql.cj.jdbc.Driver
+
