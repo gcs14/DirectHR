@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.gcs14.employeedirectory.EmployeeDirectoryApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.153 s - in com.gcs14.employeedirectory.EmployeeDirectoryApplicationTests
