@@ -10,15 +10,15 @@
 	</parent>
 	<groupId>com.gxcsmith94</groupId>
 	<artifactId>employee-directory</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
+<!--	<version>0.0.1-SNAPSHOT</version>-->
 	<name>employee-directory</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>1.8</java.version>
-		<frontend-src-dir>${project.basedir}/src/main/frontend</frontend-src-dir>
-		<node.version>v14.15.4</node.version>
-		<yarn.version>v1.16.0</yarn.version>
-		<frontend-maven-plugin.version>1.7.6</frontend-maven-plugin.version>
+		<java.version>17</java.version>
+		<frontend-src-dir>${project.basedir}/src/main/frontend/src</frontend-src-dir>
+		<node.version>v18.12.2</node.version>
+		<frontend-maven-plugin.version>1.15.0</frontend-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -28,6 +28,7 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<version>3.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
@@ -49,7 +50,6 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -58,7 +58,7 @@
 				<configuration>
 					<excludes>
 						<exclude>
-							<groupId>org.project-lombok</groupId>
+							<groupId>org.projectlombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
@@ -67,11 +67,9 @@
 			<plugin>
 				<groupId>com.github.eirslett</groupId>
 				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.12.1</version>
-
+				<version>1.15.0</version>
 				<configuration>
-					<nodeVersion>v18.12.1</nodeVersion>
-					<npmVersion>8.19.2</npmVersion>
+					<nodeVersion>${node.version}</nodeVersion>
 					<workingDirectory>${frontend-src-dir}</workingDirectory>
 					<installDirectory>${project.build.directory}</installDirectory>
 				</configuration>
@@ -84,6 +82,10 @@
 							<goal>install-node-and-npm</goal>
 						</goals>
 						<phase>generate-resources</phase>
+						<configuration>
+							<nodeVersion>v18.12.1</nodeVersion>
+							<npmVersion>8.19.2</npmVersion>
+						</configuration>
 					</execution>
 
 					<!-- running npm install -->
@@ -117,16 +119,16 @@
 				<artifactId>maven-resources-plugin</artifactId>
 				<executions>
 					<execution>
-						<id>position-react-build</id>
+						<id>Copy JavaScript app into SpringBoot</id>
 						<phase>process-resources</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/static</outputDirectory>
+							<outputDirectory>target/classes/static</outputDirectory>
 							<resources>
 								<resource>
-									<directory>${frontend-src-dir}/build</directory>
+									<directory>src/main/frontend/build</directory>
 									<filtering>true</filtering>
 								</resource>
 							</resources>
@@ -135,7 +137,6 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<finalName>employee-directory</finalName>
+		<finalName>DirectHR</finalName>
 	</build>
-
 </project>

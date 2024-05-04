@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:3000")
+//@CrossOrigin("https://directhr.netlify.app/")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
