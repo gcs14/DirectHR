@@ -1,4 +1,4 @@
 FROM eclipse-temurin:17
 COPY DirectHR.jar /DirectHR.jar
-EXPOSE 8080
+EXPOSE 8080/tcp
 ENTRYPOINT ["java", "-jar", "/DirectHR.jar"]
