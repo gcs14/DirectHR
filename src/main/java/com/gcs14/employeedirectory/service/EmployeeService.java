@@ -59,6 +59,10 @@ public class EmployeeService {
         if(newEmployee.getHourlyWage() != 0.0){
             existingEmployee.setHourlyWage(newEmployee.getHourlyWage());
         }
+        if(newEmployee.getHireDate() != null && !newEmployee.getHireDate().equals("")){
+            existingEmployee.setHireDate(newEmployee.getHireDate());
+        }
+
         return employeeRepository.save(existingEmployee);
     }
 
