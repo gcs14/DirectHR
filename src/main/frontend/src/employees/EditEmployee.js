@@ -30,12 +30,12 @@ export default function EditEmployee() {
 
     const onSubmit=async(e)=>{
         e.preventDefault();
-        await axios.put(`http://localhost:8080/employee/${id}`, employee);
+        await axios.put(`https://direct-hr.com/employee/${id}`, employee);
         navigate("/");
     };
 
     const loadEmployee = async () =>{
-        const result = await axios.get(`http://localhost:8080/employee/${id}`);
+        const result = await axios.get(`https://direct-hr.com/employee/${id}`);
         setEmployee(result.data);
     };
 
