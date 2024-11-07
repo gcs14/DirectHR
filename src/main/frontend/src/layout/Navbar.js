@@ -2,11 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
+
     return (
-        <div>
-            <nav className="navbar navbar-expand-lg navbar-muted bg-warning">
+        <div id="navbar-container">
+            <nav className="navbar navbar-expand-lg navbar-muted bg-primary">
                 <div className="container-fluid">
-                    <Link className="navbar-brand" to="/">DirectHR</Link>
+                    <Link className="navbar-brand text-light" to="/">DirectHR</Link>
                     <button
                         className="navbar-toggler"
                         type="button"
@@ -18,7 +19,7 @@ export default function Navbar() {
                     >
                         <span className="navbar-toggler-icon"></span>
                     </button>
-                    <Link className="btn btn-outline-dark" to="/addemployee">Add User</Link>
+                    <Link className="btn btn-outline-light" to="/addemployee">Add User</Link>
                 </div>
             </nav>
         </div>
