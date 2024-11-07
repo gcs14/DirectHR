@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin("*")
-//@CrossOrigin("http://localhost:3000")
-//@CrossOrigin("https://directhr.netlify.app/")
+//@CrossOrigin("*")
+@CrossOrigin("http://localhost:3000")
+//@CrossOrigin("http://direct-hr.com/")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
