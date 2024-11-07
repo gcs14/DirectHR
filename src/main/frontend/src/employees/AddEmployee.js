@@ -27,7 +27,7 @@ export default function AddEmployee() {
 
     const onSubmit=async(e)=>{
         e.preventDefault();
-        await axios.post("http://localhost:8080/employee", employee);
+        await axios.post("https://direct-hr.com/employee", employee);
         navigate("/");
     };
 
@@ -109,7 +109,7 @@ export default function AddEmployee() {
                         <input 
                             type={"text"} 
                             className="form-control" 
-                            placeholder="Is the employee 'full-time' or 'part-time'?" 
+                            placeholder="Is the employee 'full time' or 'part time'?"
                             name="jobType"
                             value={jobType}
                             onChange={(e)=>onInputChange(e)}
