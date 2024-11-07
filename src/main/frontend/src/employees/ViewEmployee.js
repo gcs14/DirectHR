@@ -25,9 +25,18 @@ export default function ViewEmployee() {
     }, []);
 
     const loadEmployee = async () =>{
-        const result = await axios.get(`http://localhost:8080/employee/${id}`);
+        const result = await axios.get(`https://direct-hr.com/employee/${id}`);
         setEmployee(result.data);
     };
+
+    const capitalize = (str) => {
+      str = str.toLowerCase()
+        .split(' ')
+        .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+        .join(' ');
+      return str;
+    }
+
 
     let formatPhoneNumber = (str) => {
         let cleaned = ('' + str).replace(/\D/g, '');
@@ -43,6 +52,15 @@ export default function ViewEmployee() {
         return "$" + str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       }
 
+    const salaryHourly = (employee) => {
+          if (employee.salary <= 0){
+              return ("$" + employee.hourlyWage + "/hr")
+          }
+          else{
+              return (numberWithCommas(employee.salary) + "/yr")
+          }
+    }
+
   return (
     <div className="container">
         <div className="row">
@@ -51,7 +69,7 @@ export default function ViewEmployee() {
 
                 <div className='card'>
                     <div className='card-header'>
-                        Employee Profile: 
+                        Employee Profile:
                         <ul className='list-group list-group-flush'>
                             <li className='list-group-item'>
                                 <b>Id: </b>
@@ -60,6 +78,10 @@ export default function ViewEmployee() {
                             <li className='list-group-item'>
                                 <b>Name: </b>
                                 {employee.name}
+                            </li>
+                            <li className='list-group-item'>
+                                <b>Birthday: </b>
+                                {employee.birthday}
                             </li>
                             <li className='list-group-item'>
                                 <b>Username: </b>
@@ -74,24 +96,16 @@ export default function ViewEmployee() {
                                 {formatPhoneNumber(employee.phoneNumber)}
                             </li>
                             <li className='list-group-item'>
-                                <b>Birthday: </b>
-                                {employee.birthday}
-                            </li>
-                            <li className='list-group-item'>
                                 <b>Position: </b>
                                 {employee.position}
                             </li>
                             <li className='list-group-item'>
                                 <b>Job Type: </b>
-                                {employee.jobType}
+                                {capitalize(employee.jobType)}
                             </li>
                             <li className='list-group-item'>
-                                <b>Salary: </b>
-                                {numberWithCommas(employee.salary)}
-                            </li>
-                            <li className='list-group-item'>
-                                <b>Hourly Wage: </b>
-                                {"$" + employee.hourlyWage + "/hr"}
+                                <b>Pay: </b>
+                                {salaryHourly(employee)}
                             </li>
                             <li className='list-group-item'>
                                 <b>Date Hired: </b>
