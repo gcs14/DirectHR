@@ -1,5 +1,18 @@
+body{
+  height: 100vh;
+  /*color: #1e2125;*/
+}
+
+#root{
+  height: 100%;
+}
+
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  /*background-color: #212020;*/
 }
 
 .App-logo {
@@ -34,5 +47,56 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+/*#navbar-container{*/
+/*  background-color: #0a53be;*/
+/*  width: 100vw;*/
+/*}*/
+
+.navbar-brand:hover{
+  transform: scale(1.1);
+  transition: ease 0.5s;
+}
+
+.container{
+  /*background-color: #1e2125;*/
+}
+
+.py-5 > .table {
+  /*background-color: slategray;*/
+}
+
+.employee_actions{
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-toggler{
+  display: none;
+}
+
+@media screen and (max-width: 700px) {
+  .email, .employee_email{
+    width: 10vw;
+  }
+  .userName, .phoneNumber{
+    display: none;
+  }
+  .employee_userName, .employee_phoneNumber{
+    display: none;
+  }
+}
+
+@media screen and (max-width: 444px) {
+  .employee_name, .employee_email{
+    font-size: 0.9em;
+  }
+}
+
+@media screen and (max-width: 444px) {
+  .email, .employee_email{
+    display: none;
   }
 }
