@@ -27,7 +27,8 @@ export default function AddEmployee() {
 
     const onSubmit=async(e)=>{
         e.preventDefault();
-        await axios.post("https://direct-hr.com/employee", employee);
+        // await axios.post("https://direct-hr.com/employee", employee);
+        await axios.post("http://localhost:8080/employee", employee);
         navigate("/");
     };
 
