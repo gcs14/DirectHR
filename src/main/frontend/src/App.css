@@ -50,11 +50,6 @@ body{
   }
 }
 
-/*#navbar-container{*/
-/*  background-color: #0a53be;*/
-/*  width: 100vw;*/
-/*}*/
-
 .navbar-brand:hover{
   transform: scale(1.1);
   transition: ease 0.5s;
@@ -69,8 +64,9 @@ body{
 }
 
 .employee_actions{
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /*flex-direction: column;*/
 }
 
 .navbar-toggler{
@@ -93,9 +89,6 @@ body{
   .employee_name, .employee_email{
     font-size: 0.9em;
   }
-}
-
-@media screen and (max-width: 444px) {
   .email, .employee_email{
     display: none;
   }
