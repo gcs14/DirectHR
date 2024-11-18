@@ -9,12 +9,14 @@ export default function Home() {
     const {id} = useParams()
 
     const loadEmployees=async()=>{
-        const result=await axios.get('https://direct-hr.com/employees')
+        // const result=await axios.get('https://direct-hr.com/employees')
+        const result=await axios.get('http://localhost:8080/employees')
         setEmployees(result.data);
     };
 
     const deleteEmployee = async (id) =>{
-      await axios.delete(`https://direct-hr.com/employee/${id}`)
+      // await axios.delete(`https://direct-hr.com/employee/${id}`)
+        await axios.delete(`http://localhost:8080/employees/${id}`)
       loadEmployees();
     };
 
