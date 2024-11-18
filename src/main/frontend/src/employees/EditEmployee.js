@@ -30,12 +30,14 @@ export default function EditEmployee() {
 
     const onSubmit=async(e)=>{
         e.preventDefault();
-        await axios.put(`https://direct-hr.com/employee/${id}`, employee);
+        // await axios.put(`https://direct-hr.com/employee/${id}`, employee);
+        await axios.put(`http://localhost:8080/employee/${id}`, employee);
         navigate("/");
     };
 
     const loadEmployee = async () =>{
-        const result = await axios.get(`https://direct-hr.com/employee/${id}`);
+        // const result = await axios.get(`https://direct-hr.com/employee/${id}`);
+        const result = await axios.get(`http://localhost:8080/employee/${id}`);
         setEmployee(result.data);
     };
 
@@ -134,7 +136,7 @@ export default function EditEmployee() {
                             onChange={(e)=>onInputChange(e)}
                         />
                     </div>
-                    <button type="submit" className="btn btn-warning">Submit</button>
+                    <button type="submit" className="btn btn-warning=">Submit</button>
                     <Link className="btn btn-outline-danger mx-2" to="/">Cancel</Link>
                 </form>
             </div>
