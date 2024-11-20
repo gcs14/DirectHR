@@ -9,15 +9,18 @@ export default function Home() {
     const {id} = useParams()
 
     const loadEmployees=async()=>{
-        // const result=await axios.get('https://direct-hr.com/employees')
+        // const result=await axios.get('https://www.direct-hr.com/employees')
         const result=await axios.get('http://localhost:8080/employees')
         setEmployees(result.data);
     };
 
     const deleteEmployee = async (id) =>{
-      // await axios.delete(`https://direct-hr.com/employee/${id}`)
-        await axios.delete(`http://localhost:8080/employees/${id}`)
-      loadEmployees();
+        // eslint-disable-next-line no-restricted-globals
+        if(confirm('Are you sure want to delete user?')){
+            // await axios.delete(`https://www.direct-hr.com/employees/${id}`)
+            await axios.delete(`http://localhost:8080/employees/${id}`)
+            loadEmployees();
+        }
     };
 
     useEffect(()=>{
@@ -27,7 +30,7 @@ export default function Home() {
   let formatPhoneNumber = (str) => {
     let cleaned = ('' + str).replace(/\D/g, '');
     let match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-  
+
     if (match) {
       return '(' + match[1] + ') ' + match[2] + '-' + match[3]
     }
@@ -37,7 +40,6 @@ export default function Home() {
   return (
     <div className='container'>
         <div className='py-5'>
-        {/*<table className="table border shadow">*/}
         <table className="table table-hover border shadow">
           <thead>
             <tr>
@@ -51,7 +53,7 @@ export default function Home() {
           </thead>
           <tbody>
             {employees.map((employee)=>(
-                <tr>
+                <tr key={employee.id}>
                     <th className="employee_id">{employee.id}</th>
                     <td className="employee_name">{employee.name}</td>
                     <td className="employee_userName">{employee.username}</td>
