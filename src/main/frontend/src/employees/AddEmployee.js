@@ -27,8 +27,8 @@ export default function AddEmployee() {
 
     const onSubmit=async(e)=>{
         e.preventDefault();
-        // await axios.post("https://direct-hr.com/employee", employee);
-        await axios.post("http://localhost:8080/employee", employee);
+        // await axios.post("https://direct-hr.com/employees", employee);
+        await axios.post("http://localhost:8080/employees", employee);
         navigate("/");
     };
 
@@ -40,8 +40,9 @@ export default function AddEmployee() {
                 
                 <form onSubmit={(e)=>onSubmit(e)}>
                     <div className="mb-3">
-                        <label htmlFor="Name" className="form-label">Full Name</label>
-                        <input 
+                        <label htmlFor="name" className="form-label">Full Name</label>
+                        <input
+                            id="name"
                             type={"text"} 
                             className="form-control" 
                             placeholder="Enter full name" 
@@ -51,8 +52,9 @@ export default function AddEmployee() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="Username" className="form-label">Username</label>
-                        <input 
+                        <label htmlFor="username" className="form-label">Username</label>
+                        <input
+                            id="username"
                             type={"text"} 
                             className="form-control" 
                             placeholder="Enter an username" 
@@ -62,9 +64,10 @@ export default function AddEmployee() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="Email" className="form-label">Email</label>
-                        <input 
-                            type={"text"} 
+                        <label htmlFor="email" className="form-label">Email</label>
+                        <input
+                            id="email"
+                            type="email"
                             className="form-control" 
                             placeholder="Enter a email address" 
                             name="email"
@@ -73,9 +76,10 @@ export default function AddEmployee() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="Phone Number" className="form-label">Phone Number</label>
-                        <input 
-                            type={"text"} 
+                        <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
+                        <input
+                            id="phoneNumber"
+                            type="tel"
                             className="form-control" 
                             placeholder="Enter a phone number" 
                             name="phoneNumber"
@@ -84,9 +88,10 @@ export default function AddEmployee() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="Birthday" className="form-label">Birthday</label>
-                        <input 
-                            type={"text"} 
+                        <label htmlFor="birthday" className="form-label">Birthday</label>
+                        <input
+                            id="birthday"
+                            type="date"
                             className="form-control" 
                             placeholder="Enter a birthday (YYYY-MM-DD)" 
                             name="birthday"
@@ -95,30 +100,36 @@ export default function AddEmployee() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="Position" className="form-label">Position</label>
-                        <input 
-                            type={"text"} 
-                            className="form-control" 
-                            placeholder="Enter the employee's postion" 
+                        <label htmlFor="position" className="form-label">Position</label>
+                        <input
+                            id="position"
+                            type="text"
+                            className="form-control"
+                            placeholder="Enter the employee's postion"
                             name="position"
                             value={position}
-                            onChange={(e)=>onInputChange(e)}
+                            onChange={(e) => onInputChange(e)}
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="Job Type" className="form-label">Job Type</label>
-                        <input 
-                            type={"text"} 
-                            className="form-control" 
+                        <label htmlFor="jobType" className="form-label">Job Type</label>
+                        <select
+                            id="jobType"
+                            className="form-control"
                             placeholder="Is the employee 'full time' or 'part time'?"
                             name="jobType"
                             value={jobType}
-                            onChange={(e)=>onInputChange(e)}
-                        />
+                            onChange={(e) => onInputChange(e)}
+                        >
+                            <option value="">--Pick either Full-Time or Part-Time--</option>
+                            <option value="fulltime">Full-Time</option>
+                            <option value="parttime">Part-Time</option>
+                        </select>
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="Salary" className="form-label">Salary</label>
-                        <input 
+                        <label htmlFor="salary" className="form-label">Salary</label>
+                        <input
+                            id="salary"
                             type={"text"} 
                             className="form-control" 
                             placeholder="If full-time, enter annual salary" 
@@ -128,9 +139,10 @@ export default function AddEmployee() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="Hourly Wage" className="form-label">Hourly Wage</label>
-                        <input 
-                            type={"text"} 
+                        <label htmlFor="hourlyWage" className="form-label">Hourly Wage</label>
+                        <input
+                            id="hourlyWage"
+                            type={"text"}
                             className="form-control" 
                             placeholder="If part-time, enter hourly pay rate" 
                             name="hourlyWage"
@@ -139,9 +151,10 @@ export default function AddEmployee() {
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="Date Hired" className="form-label">Date Hired</label>
+                        <label htmlFor="hireDate" className="form-label">Date Hired</label>
                         <input 
-                            type={"text"} 
+                            id="hireDate"
+                            type="date"
                             className="form-control" 
                             placeholder="Enter the date emoployee was hired (YYYY-MM-DD)" 
                             name="hireDate"
@@ -149,7 +162,7 @@ export default function AddEmployee() {
                             onChange={(e)=>onInputChange(e)}
                         />
                     </div>
-                    <button type="submit" className="btn btn-warning">Submit</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                     <Link className="btn btn-outline-danger mx-2" to="/">Cancel</Link>
                 </form>
             </div>
