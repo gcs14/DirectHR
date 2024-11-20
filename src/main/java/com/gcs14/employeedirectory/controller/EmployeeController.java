@@ -4,14 +4,16 @@ import com.gcs14.employeedirectory.exception.EmployeeNotFoundException;
 import com.gcs14.employeedirectory.model.Employee;
 import com.gcs14.employeedirectory.repository.EmployeeRepository;
 import com.gcs14.employeedirectory.service.EmployeeService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+@CrossOrigin
 @RestController
-//@CrossOrigin("*")
-@CrossOrigin("http://localhost:3000")
-//@CrossOrigin("http://direct-hr.com/")
+//@CrossOrigin("http://localhost:3000")
+//@CrossOrigin("https://direct-hr.com/employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -27,20 +29,26 @@ public class EmployeeController {
     public List<Employee> getEmployees() {
         return employeeService.getEmployees();
     }
-    @GetMapping("/employee/{id}")
+
+    @GetMapping("/csrf-token")
+    public CsrfToken getCsrfToken(HttpServletRequest request){
+        return (CsrfToken) request.getAttribute("_csrf");
+    }
+
+    @GetMapping("/employees/{id}")
     public Employee getEmployeeById(@PathVariable Long id){
         return employeeService.getEmployeeById(id);
     }
-    @PostMapping("/employee")
+    @PostMapping("/employees")
     public void addNewEmployee(@RequestBody Employee employee) {
         employeeService.addNewEmployee(employee);
     }
-    @PutMapping("/employee/{id}")
+    @PutMapping("/employees/{id}")
     public void updateEmployee(@RequestBody Employee employee, @PathVariable Long id){
         employeeService.updateEmployee(employee, id);
     }
 
-    @DeleteMapping("/employee/{id}")
+    @DeleteMapping("/employees/{id}")
     String deleteEmployee(@PathVariable Long id){
         if(!employeeRepository.existsById(id)){
             throw new EmployeeNotFoundException(id);
