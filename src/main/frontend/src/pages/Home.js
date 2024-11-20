@@ -19,7 +19,7 @@ export default function Home() {
         if(confirm('Are you sure want to delete user?')){
             // await axios.delete(`https://www.direct-hr.com/employees/${id}`)
             await axios.delete(`http://localhost:8080/employees/${id}`)
-            loadEmployees();
+            await loadEmployees();
         }
     };
 
