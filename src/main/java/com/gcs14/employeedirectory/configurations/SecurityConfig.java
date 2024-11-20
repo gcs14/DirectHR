@@ -25,7 +25,5 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .build();
 //        http.formLogin(Customizer.withDefaults());
-
-//        return http.build();
     }
 }
