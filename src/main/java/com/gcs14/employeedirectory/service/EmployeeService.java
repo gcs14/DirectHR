@@ -1,13 +1,9 @@
 package com.gcs14.employeedirectory.service;
 
-import com.gcs14.employeedirectory.converter.EmployeeConverter;
 import com.gcs14.employeedirectory.model.Employee;
 import com.gcs14.employeedirectory.repository.EmployeeRepository;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -20,9 +16,6 @@ public class EmployeeService {
     public EmployeeService(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
-
-    @Autowired
-    EmployeeConverter converter;
 
     public List<Employee> getEmployees() {
         return employeeRepository.findAll();
@@ -63,7 +56,7 @@ public class EmployeeService {
         if(newEmployee.getHourlyWage() != 0.0){
             existingEmployee.setHourlyWage(newEmployee.getHourlyWage());
         }
-        if(newEmployee.getHireDate() != null && !newEmployee.getHireDate().equals("")){
+        if(newEmployee.getHireDate() != null && !newEmployee.getHireDate().toString().isEmpty()){
             existingEmployee.setHireDate(newEmployee.getHireDate());
         }
         employeeRepository.save(existingEmployee);
