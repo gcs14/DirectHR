@@ -3,8 +3,12 @@ package com.gcs14.employeedirectory.service;
 import com.gcs14.employeedirectory.converter.EmployeeConverter;
 import com.gcs14.employeedirectory.model.Employee;
 import com.gcs14.employeedirectory.repository.EmployeeRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import java.util.List;
 
 @Service
@@ -32,25 +36,25 @@ public class EmployeeService {
         employeeRepository.save(employee);
     }
 
-    public Employee updateEmployee(Employee newEmployee, Long id){
+    public void updateEmployee(Employee newEmployee, Long id){
         Employee existingEmployee = employeeRepository.findById(id).get();
 
-        if(newEmployee.getName()!= null && !newEmployee.getName().equals("")){
+        if(newEmployee.getName()!= null && !newEmployee.getName().isEmpty()){
             existingEmployee.setName(newEmployee.getName());
         }
-        if(newEmployee.getUsername()!= null && !newEmployee.getUsername().equals("")){
+        if(newEmployee.getUsername()!= null && !newEmployee.getUsername().isEmpty()){
             existingEmployee.setUsername(newEmployee.getUsername());
         }
-        if(newEmployee.getEmail()!= null && !newEmployee.getEmail().equals("")){
+        if(newEmployee.getEmail()!= null && !newEmployee.getEmail().isEmpty()){
             existingEmployee.setEmail(newEmployee.getEmail());
         }
-        if(newEmployee.getPhoneNumber() != null && !newEmployee.getPhoneNumber().equals("")){
+        if(newEmployee.getPhoneNumber() != null && !newEmployee.getPhoneNumber().isEmpty()){
             existingEmployee.setPhoneNumber(newEmployee.getPhoneNumber());
         }
-        if(newEmployee.getPosition() != null && !newEmployee.getPosition().equals("")){
+        if(newEmployee.getPosition() != null && !newEmployee.getPosition().isEmpty()){
             existingEmployee.setPosition(newEmployee.getPosition());
         }
-        if(newEmployee.getJobType() != null && !newEmployee.getJobType().equals("")){
+        if(newEmployee.getJobType() != null && !newEmployee.getJobType().isEmpty()){
             existingEmployee.setJobType(newEmployee.getJobType());
         }
         if(newEmployee.getSalary() != 0){
@@ -62,61 +66,6 @@ public class EmployeeService {
         if(newEmployee.getHireDate() != null && !newEmployee.getHireDate().equals("")){
             existingEmployee.setHireDate(newEmployee.getHireDate());
         }
-
-        return employeeRepository.save(existingEmployee);
+        employeeRepository.save(existingEmployee);
     }
-
-
-    // Code for if DTO implementation were needed
-    /*
-    public List<EmployeeDTO> getAllEmployees() {
-        List<Employee> getAll = employeeRepository.findAll();
-        return converter.entityToDto(getAll);
-    }
-
-    public EmployeeDTO getEmployeeById(Long id){
-        Employee employee = employeeRepository.findById(id)
-                .orElseThrow(()->new EmployeeNotFoundException(id));
-        return converter.entityToDto(employee);
-    }
-
-    public EmployeeDTO addNewEmployee(EmployeeDTO dto) {
-        Employee employee = converter.dtoToEntity(dto);
-        employee = employeeRepository.save(employee);
-        return converter.entityToDto(employee);
-    }
-
-    public EmployeeDTO updateEmployee(@NotNull EmployeeDTO newEmployee, Long id){
-        Employee existingEmployee = employeeRepository.findById(id)
-                .orElseThrow(()->new EmployeeNotFoundException(id));
-
-        if(newEmployee.getName()!= null){
-            existingEmployee.setName(newEmployee.getName());
-        }
-        if(newEmployee.getUsername()!= null){
-            existingEmployee.setUsername(newEmployee.getUsername());
-        }
-        if(newEmployee.getEmail()!= null){
-            existingEmployee.setEmail(newEmployee.getEmail());
-        }
-        if(newEmployee.getPhoneNumber() != null){
-            existingEmployee.setPhoneNumber(newEmployee.getPhoneNumber());
-        }
-        if(newEmployee.getPosition() != null){
-            existingEmployee.setPosition(newEmployee.getPosition());
-        }
-        if(newEmployee.getJobType() != null){
-            existingEmployee.setJobType(newEmployee.getJobType());
-        }
-        if(newEmployee.getSalary() != 0){
-            existingEmployee.setSalary(newEmployee.getSalary());
-        }
-        if(newEmployee.getHourlyWage() != 0.0){
-            existingEmployee.setHourlyWage(newEmployee.getHourlyWage());
-        }
-
-        existingEmployee = employeeRepository.save(existingEmployee);
-        return converter.entityToDto(existingEmployee);
-    }
-*/
 }
