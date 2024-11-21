@@ -9,14 +9,16 @@ import java.time.LocalDate;
 @Setter
 @Getter
 @Entity
+@Table(name = "employee")
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String username;
     private String email;
+    private String username;
+    private String password;
     private String phoneNumber;
     private LocalDate birthday;
     private String position;
@@ -26,14 +28,14 @@ public class Employee {
     private LocalDate hireDate;
 
     public Employee() {
-
     }
 
-    public Employee(Long id, String name, String username, String email, String phoneNumber, LocalDate birthday, String position, String jobType, int salary, double hourlyWage, LocalDate hireDate) {
+    public Employee(Long id, String name, String email, String username, String password, String phoneNumber, LocalDate birthday, String position, String jobType, int salary, double hourlyWage, LocalDate hireDate) {
         this.id = id;
         this.name = name;
-        this.username = username;
         this.email = email;
+        this.username = username;
+        this.password = password;
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
         this.position = position;
