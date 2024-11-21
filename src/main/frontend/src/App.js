@@ -1,12 +1,12 @@
 import './App.css';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Navbar from './layout/Navbar';
-import Login from './pages/Login'
 import Home from './pages/Home';
 import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import AddEmployee from './employees/AddEmployee';
 import EditEmployee from './employees/EditEmployee';
 import ViewEmployee from "./employees/ViewEmployee";
+// import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <Navbar />
 
         <Routes>
-          <Route exact path="/login" element ={<Login />}/>
+          {/*<Route path="/" element={<LoginPage/>} />*/}
           <Route exact path="/" element ={<Home />}/>
           <Route exact path="/addemployee" element ={<AddEmployee />}/>
           <Route exact path="/editemployee/:id" element ={<EditEmployee />}/>
