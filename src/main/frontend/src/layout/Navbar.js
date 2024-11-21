@@ -1,7 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 export default function Navbar() {
+
+    // const history = useNavigate();
+    //
+    // const handleLogout = () => {
+    //     // Perform logout actions here (e.g., clear session, remove authentication token)
+    //     // After logout, redirect to the login page
+    //     history('/');
+    // };
 
     return (
         <div id="navbar-container">
@@ -20,6 +28,7 @@ export default function Navbar() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
                     <Link className="btn btn-outline-light" to="/addemployee">Add User</Link>
+                    {/*<button type="button" className="btn btn-danger" onClick={handleLogout}>Logout</button>*/}
                 </div>
             </nav>
         </div>
