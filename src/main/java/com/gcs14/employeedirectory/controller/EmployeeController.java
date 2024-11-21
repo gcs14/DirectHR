@@ -12,8 +12,6 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-//@CrossOrigin("http://localhost:3000")
-//@CrossOrigin("https://direct-hr.com/employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -57,27 +55,4 @@ public class EmployeeController {
         employeeRepository.deleteById(id);
         return "The employee named '" + name + "' has been deleted.";
     }
-
-    // Code for if DTO implementation were needed
-    /*
-    @GetMapping("/employees")
-    public List<EmployeeDTO> getAllEmployees() {
-        return employeeService.getAllEmployees();
-    }
-
-    @GetMapping("/employee/{id}")
-    public EmployeeDTO getEmployeeById(@PathVariable Long id){
-        return employeeService.getEmployeeById(id);
-    }
-
-    @PostMapping("/employee")
-    public EmployeeDTO addNewEmployee(@RequestBody EmployeeDTO dto) {
-        return employeeService.addNewEmployee(dto);
-    }
-
-    @PutMapping("/employee/{id}")
-    public void updateEmployee(@RequestBody EmployeeDTO updatedDto, @PathVariable Long id){
-        employeeService.updateEmployee(updatedDto, id);
-    }
-     */
 }
